@@ -11,7 +11,7 @@ function App() {
   const [addingArticle,setAddingArticle] = useState(false);
 
   useEffect(()=>{
-    fetch("https://blog-react-backend-ard6.onrender.com/articles")
+    fetch("https://blog-react-backend-2.onrender.com/articles")
       .then(res => res.json())
       .then(data => setArticles(data))
       .catch(err => console.log(err));
@@ -19,7 +19,7 @@ function App() {
 
   const addArticle = (e) => {
     e.preventDefault();
-    fetch("https://blog-react-backend-ard6.onrender.com/articles",{
+    fetch("https://blog-react-backend-2.onrender.com/articles",{
       method:"POST",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify({title,author,content}),
@@ -34,7 +34,7 @@ function App() {
     .catch(err=>console.log(err));
   }
   const deleteArticle = (id) =>{
-    fetch(`https://blog-react-backend-ard6.onrender.com/articles/${id}`,{
+    fetch(`https://blog-react-backend-2.onrender.com/articles/${id}`,{
       method: "DELETE",
     })
       .then(()=>{
@@ -43,7 +43,7 @@ function App() {
     .catch(err=>console.log(err))
   }
   const modifyArticle = (id,newTitle,newAuthor,newContent) =>{
-    fetch(`https://blog-react-backend-ard6.onrender.com/articles/${id}`,{
+    fetch(`https://blog-react-backend-2.onrender.com/articles/${id}`,{
       method: "PUT",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify({title : newTitle,author : newAuthor,content : newContent}),
