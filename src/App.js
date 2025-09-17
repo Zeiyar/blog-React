@@ -7,8 +7,8 @@ import DashBoard from ("./pages/Dashboard");
 function App() {
   <Router>
     <Routes>
-      <Route path="/" element={<Login />}/>
-      <Route path="/home" element={<Home />}/>
+      <Route path="/" element={<Home />}/>
+      <Route path="/login" element={<Login />}/>
       <Route path="/register" element={<Register />}/>
       <Route path="/dashboard" element={<DashBoard />}/>
     </Routes>
