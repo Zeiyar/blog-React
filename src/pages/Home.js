@@ -1,0 +1,102 @@
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { getArticles, addArticle, deleteArticle, modifyArticle } from "../services/articleServices";
+import ArticleList from "../components/ArticlesList";
+import ArticleForm from "../components/ArticleForm";
+import ArticleView from "../components/ArticleView";
+
+function Home() {
+  const token = localStorage.getItem("token");
+  const navigate = useNavigate();
+  const [articles, setArticles] = useState([]);
+  const [editingArticle, setEditingArticle] = useState(null);
+  const [seeingArticle, setSeeingArticle] = useState(null);
+  const [addingArticle, setAddingArticle] = useState(false);
+  const [search, setSearch] = useState("");
+
+  useEffect(() => {
+    getArticles().then(setArticles);
+  }, []);
+
+  const handleAdd = async (article) => {
+    const newArticle = await addArticle(article, token);
+    setArticles([...articles, newArticle]);
+    setAddingArticle(false);
+  };
+
+  const handleDelete = async (id) => {
+    await deleteArticle(id, token);
+    setArticles(articles.filter((a) => a._id !== id));
+  };
+
+  const handleEdit = async (id, updatedData) => {
+    const updatedArticle = await modifyArticle(id, updatedData, token);
+    setArticles(articles.map((a) => (a._id === id ? updatedArticle : a)));
+    setEditingArticle(null);
+  };
+
+  const handleView = (id) => {
+    const seeing = articles.find((a) => a._id === id);
+    setSeeingArticle(seeing);
+  };
+
+  const filteredArticles = search
+    ? articles.filter(
+        (a) =>
+          a.author.toLowerCase().includes(search.toLowerCase()) ||
+          a.title.toLowerCase().includes(search.toLowerCase())
+      )
+    : articles;
+
+  if (seeingArticle) {
+    return <ArticleView article={seeingArticle} onBack={() => setSeeingArticle(null)} />;
+  }
+
+  if (editingArticle) {
+    return (
+      <ArticleForm
+        initialData={editingArticle}
+        onSubmit={(data) => handleEdit(editingArticle._id, data)}
+        onCancel={() => setEditingArticle(null)}
+      />
+    );
+  }
+
+  if (addingArticle) {
+    return <ArticleForm onSubmit={handleAdd} onCancel={() => setAddingArticle(false)} />;
+  }
+
+  return (
+    <div>
+      <header>
+        <nav className="app-header">
+          <h1>List of Articles</h1>
+          <input
+            type="text"
+            placeholder="search for an author or title..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+        </nav>
+        <button className="registerBtn" onClick={() => navigate("/login")}>
+          Login/Register
+        </button>
+      </header>
+
+      <main className="homePage">
+        <ArticleList
+          articles={filteredArticles}
+          onDelete={handleDelete}
+          onEdit={setEditingArticle}
+          onView={handleView}
+        />
+
+        <button className="add-btn" onClick={() => setAddingArticle(true)}>
+          Add an article!!!
+        </button>
+      </main>
+    </div>
+  );
+}
+
+export default Home;
