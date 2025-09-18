@@ -9,7 +9,7 @@ function DashBoard() {
   const username = localStorage.getItem("username");
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
-
+  const [editingArticle, setEditingArticle] = useState(null);
   const [disconnecta, setDisconnecta] = useState(false);
   const [myArticles, setMyArticles] = useState([]);
   const [seeingArticle, setSeeingArticle] = useState(null);
@@ -45,7 +45,8 @@ function DashBoard() {
   const handleEdit = async (id, updatedData) => {
     const updatedArticle = await modifyArticle(id, updatedData, token);
     setMyArticles(myArticles.map((a) => (a._id === id ? updatedArticle : a)));
-    navigate("/dashboard");
+    setEditingArticle(null);
+    navigate("/");
   };
 
   const handleView = (id) => {
@@ -56,6 +57,18 @@ function DashBoard() {
   // Si on affiche un seul article
   if (seeingArticle) {
     return <ArticleView article={seeingArticle} onBack={() => setSeeingArticle(null)} />;
+  }
+
+  if (editingArticle) {
+    return (
+      <ArticleForm
+        initialData={editingArticle}
+        onSubmit={(data) => {handleEdit(editingArticle._id, data);
+            setEditingArticle(null);}
+        }
+        onCancel={() => setEditingArticle(null)}
+      />
+    );
   }
 
   return (

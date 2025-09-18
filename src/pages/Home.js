@@ -59,7 +59,9 @@ function Home() {
     return (
       <ArticleForm
         initialData={editingArticle}
-        onSubmit={(data) => handleEdit(editingArticle._id, data)}
+        onSubmit={(data) => {handleEdit(editingArticle._id, data);
+            setEditingArticle(null);}
+        }
         onCancel={() => setEditingArticle(null)}
       />
     );
