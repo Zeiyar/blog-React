@@ -23,6 +23,7 @@ function Home() {
     const newArticle = await addArticle(article, token);
     setArticles([...articles, newArticle]);
     setAddingArticle(false);
+    navigate("/")
   };
 
   const handleDelete = async (id) => {
@@ -34,6 +35,7 @@ function Home() {
     const updatedArticle = await modifyArticle(id, updatedData, token);
     setArticles(articles.map((a) => (a._id === id ? updatedArticle : a)));
     setEditingArticle(null);
+    navigate("/");
   };
 
   const handleView = (id) => {
