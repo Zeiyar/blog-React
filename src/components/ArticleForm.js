@@ -16,9 +16,8 @@ function ArticleForm ({onSubmit,initialData,onCancel}){
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        onSubmit({title,author,content});
+        onSubmit({title,content});
         setTitle("");
-        setAuthor("");
         setContent("");
     }
 
@@ -33,9 +32,8 @@ function ArticleForm ({onSubmit,initialData,onCancel}){
             />
             <input
               type="text"
-              value={username || author}
-              onChange={(e) => setAuthor(e.target.value)}
-              required
+              value={username || ""}
+              disabled
             />
             <textarea
               placeholder="content"
