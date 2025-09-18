@@ -17,10 +17,10 @@ export async function addArticle(article,token){
 export async function modifyArticle(id,newArticle,token){
     const res = await fetch(`${API_URL}/${id}`,{
         method: "PUT",
-        headers:{"Content-Type":"application/json",Authorization:`Bearer : ${token}`},
+        headers:{"Content-Type":"application/json",Authorization:`Bearer ${token}`},
         body: JSON.stringify(newArticle),
     });
-    return res.json;
+    return res.json();
 }
 
 export async function deleteArticle(id,token){
