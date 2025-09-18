@@ -42,9 +42,10 @@ function DashBoard() {
     setMyArticles([...myArticles, newArticle]);
   };
 
-  const handleEdit = async (id, article) => {
-    const updatedArticle = await modifyArticle(id, article, token);
+  const handleEdit = async (id, updatedData) => {
+    const updatedArticle = await modifyArticle(id, updatedData, token);
     setMyArticles(myArticles.map((a) => (a._id === id ? updatedArticle : a)));
+    navigate("/dashboard");
   };
 
   const handleView = (id) => {
