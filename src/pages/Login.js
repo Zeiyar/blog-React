@@ -43,8 +43,10 @@ function Login(){
             placeholder="4327Gbjsq&"/>
 
             <button type="submit">Submit</button>
-            <button onClick={()=>navigate("/register")}>First time ?</button>
-            <button onClick={()=>navigate("/")}>back?</button>
+            <button onClick={(e)=>{e.preventDefault();
+            navigate("/register")}}>First time ?</button>
+            <button onClick={(e)=>{e.preventDefault();
+            navigate("/")}}>back?</button>
         </form>
     );
 }

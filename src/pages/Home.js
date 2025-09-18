@@ -7,6 +7,7 @@ import ArticleView from "../components/ArticleView";
 
 function Home() {
   const token = localStorage.getItem("token");
+  const username = localStorage.getItem("username");
   const navigate = useNavigate();
   const [articles, setArticles] = useState([]);
   const [editingArticle, setEditingArticle] = useState(null);
@@ -70,7 +71,8 @@ function Home() {
     <div>
       <header>
         <nav className="app-header">
-          <h1>List of Articles</h1>
+          <h1>Reablog in the filled Hollow</h1>
+          {username&&(<h2>even if we tried we couldn't stop {username}</h2>)}
           <input
             type="text"
             placeholder="search for an author or title..."

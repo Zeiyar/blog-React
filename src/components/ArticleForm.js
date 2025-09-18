@@ -4,7 +4,8 @@ function ArticleForm ({onSubmit,initialData,onCancel}){
     const [title,setTitle] = useState("");
     const [content,setContent] = useState("");
     const [author,setAuthor] = useState("");
-    
+    const username = localStorage.getItem("username");
+
     useEffect(()=>{
         if (initialData){
             setTitle(initialData.title);
@@ -32,8 +33,7 @@ function ArticleForm ({onSubmit,initialData,onCancel}){
             />
             <input
               type="text"
-              placeholder="Author"
-              value={author}
+              value={username || author}
               onChange={(e) => setAuthor(e.target.value)}
               required
             />

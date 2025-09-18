@@ -82,12 +82,14 @@ function Register(){
         {!visible ? (
         <>
             <span>WEAK</span>
-            <button onClick={()=>navigate("/login")}>Back?</button>
+            <button onClick={(e)=>{e.preventDefault();
+                navigate("/")}}>Back?</button>
         </>
         ):(
         <>
             <strong>STRONG</strong>
-            <button onClick={()=>navigate("/login")}>Back?</button>
+            <button onClick={(e)=>{e.preventDefault();
+                navigate("/")}}>Back?</button>
             <button type="submit">Submit</button>
         </>)}
         <span>{succesMessage}</span>

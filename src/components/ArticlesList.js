@@ -1,4 +1,5 @@
 function ArticleList ({ articles, onEdit, onDelete, onView}){
+  const token = localStorage.getItem("token");
     return (
         <ul className="article-list">
             {articles.map(article => (
@@ -12,8 +13,8 @@ function ArticleList ({ articles, onEdit, onDelete, onView}){
                 <div className="article-actions">
                   <button className="menu-btn">⋮</button>
                   <div className="actions-dropdown">
-                    <button onClick={() => onEdit(article)}>✏️ Modify</button>
-                    <button onClick={() => onDelete(article._id)}>🗑️ Delete</button>
+                    <button onClick={() => onEdit(article)} disabled={!token || (username !== article.author && role !== admin)}>✏️ Modify</button>
+                    <button onClick={() => onDelete(article._id)} disabled={!token || (username !== article.author && role !== admin)}>🗑️ Delete</button>
                     <button onClick={() => onView(article._id)}>👁️ See</button>
                   </div>
                 </div>
