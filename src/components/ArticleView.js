@@ -1,4 +1,4 @@
-function ArticleView (article,onBack){
+function ArticleView ({article,onBack}){
     return (
     <div className="Seeing">
         <h1>{article.title}</h1>

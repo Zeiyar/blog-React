@@ -44,7 +44,7 @@ function Login(){
 
             <button type="submit">Submit</button>
             <button onClick={()=>navigate("/register")}>First time ?</button>
-            <button onClick={()=>navigate("/home")}>back?</button>
+            <button onClick={()=>navigate("/")}>back?</button>
         </form>
     );
 }

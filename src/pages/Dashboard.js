@@ -28,7 +28,7 @@ function DashBoard() {
   const disconnection = () => {
     localStorage.removeItem("username");
     localStorage.removeItem("token");
-    navigate("/home");
+    navigate("/");
   };
 
   // CRUD
@@ -79,7 +79,7 @@ function DashBoard() {
         <ArticleForm onSubmit={handleAdd} />
       </div>
 
-      <button onClick={() => navigate("/home")}>Home</button>
+      <button onClick={() => navigate("/")}>Home</button>
       <button onClick={() => setDisconnecta(true)}>Disconnect?</button>
 
       {disconnecta && (
