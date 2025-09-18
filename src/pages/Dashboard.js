@@ -46,7 +46,7 @@ function DashBoard() {
     const updatedArticle = await modifyArticle(id, updatedData, token);
     setMyArticles(myArticles.map((a) => (a._id === id ? updatedArticle : a)));
     setEditingArticle(null);
-    navigate("/");
+    navigate("/dashboard");
   };
 
   const handleView = (id) => {
@@ -83,7 +83,7 @@ function DashBoard() {
       <div id="articles" className="myArticles">
         <ArticleList
           articles={myArticles}
-          onEdit={handleEdit}
+          onEdit={setEditingArticle}
           onDelete={handleDelete}
           onView={handleView}
         />
