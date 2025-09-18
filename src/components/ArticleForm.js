@@ -3,13 +3,11 @@ import { useState, useEffect } from "react";
 function ArticleForm ({onSubmit,initialData,onCancel}){
     const [title,setTitle] = useState("");
     const [content,setContent] = useState("");
-    const [author,setAuthor] = useState("");
     const username = localStorage.getItem("username");
 
     useEffect(()=>{
         if (initialData){
             setTitle(initialData.title);
-            setAuthor(initialData.author);
             setContent(initialData.content);
         }
     },[initialData]);

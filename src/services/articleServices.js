@@ -11,6 +11,10 @@ export async function addArticle(article,token){
         headers: {"Content-Type" : "application/json",Authorization:`Bearer ${token}`},
         body: JSON.stringify(article),
     });
+    if (!res.ok) {
+    const err = await res.json();
+    throw new Error(err.message);
+  }
     return res.json();
 }
 
@@ -20,6 +24,10 @@ export async function modifyArticle(id,newArticle,token){
         headers:{"Content-Type":"application/json",Authorization:`Bearer ${token}`},
         body: JSON.stringify(newArticle),
     });
+    if (!res.ok) {
+    const err = await res.json();
+    throw new Error(err.message);
+  }
     return res.json();
 }
 
@@ -28,4 +36,8 @@ export async function deleteArticle(id,token){
         method: "DELETE",
         headers:{Authorization:`Bearer ${token}`}
     })
+    if (!res.ok) {
+    const err = await res.json();
+    throw new Error(err.message);
+  }
 }
