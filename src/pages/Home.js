@@ -66,13 +66,16 @@ function Home() {
   if (addingArticle) {
     return <ArticleForm onSubmit={handleAdd} onCancel={() => setAddingArticle(false)} />;
   }
+  if(username){
+    return (<h2 className="usernameh2">even if we tried we couldn't stop {username}</h2>)
+  }
 
   return (
     <div>
       <header>
         <nav className="app-header">
           <h1>Reablog in the filled Hollow</h1>
-          {username&&(<h2>even if we tried we couldn't stop {username}</h2>)}
+          
           <input
             type="text"
             placeholder="search for an author or title..."
@@ -80,9 +83,9 @@ function Home() {
             onChange={(e) => setSearch(e.target.value)}
           />
         </nav>
-        <button className="registerBtn" onClick={() => navigate("/login")}>
+        {!username?(<button className="registerBtn" onClick={() => navigate("/login")}>
           Login/Register
-        </button>
+        </button>):(<button onClick={() => navigate("/dashboard")}>DashBoard</button>)}
       </header>
 
       <main className="homePage">

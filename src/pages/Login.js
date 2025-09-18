@@ -20,6 +20,7 @@ function Login(){
         if (res.ok){
             localStorage.setItem("token",data.token);
             localStorage.setItem("username",data.username);
+            if(data.username==="ADMIN"){localStorage.setItem("role","admin")}
             navigate("/dashboard");
         } else {
             alert(data.message);

@@ -1,5 +1,7 @@
 function ArticleList ({ articles, onEdit, onDelete, onView}){
   const token = localStorage.getItem("token");
+  const username = localStorage.getItem("username");
+  const role = localStorage.getItem("role");
     return (
         <ul className="article-list">
             {articles.map(article => (
