@@ -36,8 +36,4 @@ export async function deleteArticle(id,token){
         method: "DELETE",
         headers:{Authorization:`Bearer ${token}`}
     })
-    if (!res.ok) {
-    const err = await res.json();
-    throw new Error(err.message);
-  }
 }
