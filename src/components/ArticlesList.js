@@ -16,7 +16,7 @@ function ArticleList ({ articles, onEdit, onDelete, onView}){
                   <button className="menu-btn">⋮</button>
                   <div className="actions-dropdown">
                     <button onClick={() => {if(!token || (username !== article.author && role !== "admin")){alert("you need to connect before doing this")}else{onEdit(article)}}}>✏️ Modify</button>
-                    <button onClick={() => {if(!token || (username !== article.author && role !== "admin")){alert("you need to connect before doing this")}else{onDelete(article)}}}>🗑️ Delete</button>
+                    <button onClick={() => {if(!token || (username !== article.author && role !== "admin")){alert("you need to connect before doing this")}else{onDelete(article._id)}}}>🗑️ Delete</button>
                     <button onClick={() => onView(article._id)}>👁️ See</button>
                   </div>
                 </div>
