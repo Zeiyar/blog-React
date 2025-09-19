@@ -47,8 +47,8 @@ function Register(){
         };
 
     return(
-        
-    <form onSubmit={handleSubmit}>
+        <div className="login-page">
+    <form onSubmit={handleSubmit} className="login-box">
         
         <h1>Register for writing article and much more !!!</h1>
 
@@ -93,7 +93,7 @@ function Register(){
             <button type="submit">Submit</button>
         </>)}
         <span>{succesMessage}</span>
-    </form>
+    </form></div>
    )
 }
 

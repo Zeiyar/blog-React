@@ -13,6 +13,7 @@ function DashBoard() {
   const [disconnecta, setDisconnecta] = useState(false);
   const [myArticles, setMyArticles] = useState([]);
   const [seeingArticle, setSeeingArticle] = useState(null);
+  const [dark,setDark] = useState(JSON.parse(localStorage.getItem("darker")) || false);
 
   // Charger les articles de l’utilisateur
   useEffect(() => {
@@ -71,13 +72,22 @@ function DashBoard() {
     );
   }
 
+  useEffect(() => {
+  if (dark) {
+    document.body.classList.add("hollow-dark");
+  } else {
+    document.body.classList.remove("hollow-dark");
+  }
+  localStorage.setItem("darker", JSON.stringify(dark));
+}, [dark]);
+
   return (
     <>
       <h1>Welcome Home {username} !!!</h1>
-      <nav>
+      <nav className="navDashboard">
         <a href="#newStory">Create new story?!</a>
         <a href="#articles">Your Articles</a>
-        <div>on work...</div>
+        <a href="#settings">Settings</a>
       </nav>
 
       <div id="articles" className="myArticles">
@@ -93,6 +103,9 @@ function DashBoard() {
         <ArticleForm onSubmit={handleAdd} />
       </div>
 
+      <button onClick={() => setDark(!dark)}>
+      {dark ? "Brighter ?" : "Darker ?"}
+      </button>
       <button onClick={() => navigate("/")}>Home</button>
       <button onClick={() => setDisconnecta(true)}>Disconnect?</button>
 

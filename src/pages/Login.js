@@ -28,7 +28,8 @@ function Login(){
     } 
 
     return (
-        <form onSubmit={handleSubmit}>
+        <div className="login-page">
+        <form onSubmit={handleSubmit} className="login-box">
             <p>Welcome user !!!</p>
 
             <input 
@@ -48,7 +49,7 @@ function Login(){
             navigate("/register")}}>First time ?</button>
             <button onClick={(e)=>{e.preventDefault();
             navigate("/")}}>back?</button>
-        </form>
+        </form></div>
     );
 }
 
