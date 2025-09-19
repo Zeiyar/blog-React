@@ -25,6 +25,16 @@ function DashBoard() {
     fetchData();
   }, [username]);
 
+  useEffect(() => {
+  if (dark) {
+    document.body.classList.add("hollow-dark");
+  } else {
+    document.body.classList.remove("hollow-dark");
+  }
+  localStorage.setItem("darker", JSON.stringify(dark));
+}, [dark]);
+
+
   // Déconnexion
   const disconnection = () => {
     localStorage.removeItem("username");
@@ -72,15 +82,7 @@ function DashBoard() {
     );
   }
 
-  useEffect(() => {
-  if (dark) {
-    document.body.classList.add("hollow-dark");
-  } else {
-    document.body.classList.remove("hollow-dark");
-  }
-  localStorage.setItem("darker", JSON.stringify(dark));
-}, [dark]);
-
+  
   return (
     <>
       <h1>Welcome Home {username} !!!</h1>
