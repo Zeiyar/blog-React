@@ -20,7 +20,7 @@ function ArticleForm ({onSubmit,initialData,onCancel}){
     }
 
     return (
-        <form onSubmit={handleSubmit} className="add-form">
+        <form onSubmit={handleSubmit} className="form">
             <input
               type="text"
               placeholder="Title"

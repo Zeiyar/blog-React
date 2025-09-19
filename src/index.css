@@ -42,7 +42,7 @@ body {
 .article-list {
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 1rem;
 }
 
 .article-item {
@@ -118,6 +118,7 @@ body {
   font-size: 0.9rem;
   color: var(--text);
   width: 100%;
+  z-index: 9;
 }
 
 .actions-dropdown button:hover {
@@ -129,6 +130,7 @@ body {
   opacity: 1;
   pointer-events: auto;
   transform: translateY(0);
+  background-color: blueviolet;
 }
 
 /* Bouton principal */
@@ -260,7 +262,7 @@ body {
 }
 
 /* Edit form */
-.edit-form {
+.form {
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -272,15 +274,15 @@ body {
   animation: fadeIn 0.3s ease;
 }
 
-.edit-form input,
-.edit-form textarea {
+.form input,
+.form textarea {
   padding: 10px;
   border: 1px solid var(--border);
   border-radius: 6px;
   font-size: 0.95rem;
 }
 
-.edit-form button {
+.form button {
   align-self: flex-end;
   background: linear-gradient(135deg, var(--accent), var(--accent-hover));
   color: white;
@@ -293,7 +295,7 @@ body {
   transition: background 0.3s ease, transform 0.2s;
 }
 
-.edit-form button:hover {
+.form button:hover {
   background: linear-gradient(135deg, var(--accent-hover), var(--accent));
   transform: scale(1.05);
 }
@@ -329,7 +331,7 @@ body {
   color: var(--accent-hover);
 }
 
-.myArticles, #newStory {
+.dash{
   margin-left: 240px;
 }
 
@@ -391,6 +393,20 @@ body.hollow-dark .login-box input {
 
 .login-box button:hover {
   background: var(--accent-hover);
+  transform: scale(1.05);
+}
+
+.registerBtn{
+  padding: 0.7rem;
+  background-color: var(--danger);
+  color: var(--danger-color);
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease, transform 0.2s;
+}
+.registerBtn:hover {
+  background: var(--danger-hover);
   transform: scale(1.05);
 }
 

@@ -85,13 +85,14 @@ function DashBoard() {
   
   return (
     <>
-      <h1>Welcome Home {username} !!!</h1>
+      
       <nav className="navDashboard">
         <a href="#newStory">Create new story?!</a>
         <a href="#articles">Your Articles</a>
         <a href="#settings">Settings</a>
       </nav>
 
+    <main className="dash"><h1>Welcome Home {username} !!!</h1>
       <div id="articles" className="myArticles">
         <ArticleList
           articles={myArticles}
@@ -118,6 +119,7 @@ function DashBoard() {
           <button onClick={() => setDisconnecta(false)}>No</button>
         </>
       )}
+      </main>
     </>
   );
 }
