@@ -38,11 +38,18 @@ function Home() {
   setArticles(articles.filter((a) => a._id !== article._id));
 };
 
+  const handleStartEdit = (article) => {
+    if (!token || (username !== article.author && role !== "admin")) {
+      alert("That's not your article");
+    } else {
+      setEditingArticle(article);
+    }
+  };
+
   const handleEdit = async (id, updatedData) => {
     const updatedArticle = await modifyArticle(id, updatedData, token);
     setArticles(articles.map((a) => (a._id === id ? updatedArticle : a)));
     setEditingArticle(null);
-    navigate("/");
   };
 
   const handleView = (id) => {
@@ -77,14 +84,6 @@ function Home() {
 //  if (addingArticle) {
  //   return <ArticleForm onSubmit={handleAdd} onCancel={() => setAddingArticle(false)} />;
   //}
-
-const handleStartEdit = (article) => {
-  if (!token || (username !== article.author && role !== "admin")) {
-    alert("That's not your article");
-  } else {
-    setEditingArticle(article);
-  }
-};
 
   return (
     <div>

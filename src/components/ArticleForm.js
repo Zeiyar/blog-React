@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 function ArticleForm ({onSubmit,initialData,onCancel}){
     const [title,setTitle] = useState("");
     const [content,setContent] = useState("");
-    const username = localStorage.getItem("username");
 
     useEffect(()=>{
         if (initialData){
@@ -14,7 +13,7 @@ function ArticleForm ({onSubmit,initialData,onCancel}){
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        onSubmit({title,content,author: username});
+        onSubmit({title,content});
         setTitle("");
         setContent("");
     }
@@ -27,11 +26,6 @@ function ArticleForm ({onSubmit,initialData,onCancel}){
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               required
-            />
-            <input
-              type="text"
-              value={username || ""}
-              disabled
             />
             <textarea
               placeholder="content"
