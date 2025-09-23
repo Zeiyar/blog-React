@@ -189,6 +189,7 @@ body {
   margin: 2rem auto;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  min-width: 300px;
 }
 
 .Seeing h1 {
@@ -224,6 +225,11 @@ body {
 
 .Seeing button:hover {
   background: var(--accent-hover);
+}
+/* Commentaire */
+.comments{
+  border: solid;
+  margin-top : 1.5rem;
 }
 
 /* Modal */
