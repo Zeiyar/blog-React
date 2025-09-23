@@ -27,20 +27,22 @@ function Home() {
     navigate("/")
   };*/
 
-  const handleDelete = async (id) => {
-    const article = articles.find((a) => a._id === id);
-    if(!token || (username !== article.author && role !== "admin")){alert("that's not your article")}else{
-    await deleteArticle(id, token);
-    setArticles(articles.filter((a) => a._id !== id))};
-  };
+
+  const handleDelete = async (article) => {
+  if (!token || (username !== article.author && role !== "admin")) {
+    alert("that's not your article");
+    return;
+  }
+
+  await deleteArticle(article._id, token);
+  setArticles(articles.filter((a) => a._id !== article._id));
+};
 
   const handleEdit = async (id, updatedData) => {
-    const article = articles.find((a) => a._id === id);
-    if(!token || (username !== article.author && role !== "admin")){alert("that's not your article")}else{
     const updatedArticle = await modifyArticle(id, updatedData, token);
     setArticles(articles.map((a) => (a._id === id ? updatedArticle : a)));
     setEditingArticle(null);
-    navigate("/")};
+    navigate("/");
   };
 
   const handleView = (id) => {
@@ -60,7 +62,7 @@ function Home() {
     return <ArticleView article={seeingArticle} onBack={() => setSeeingArticle(null)} />;
   }
 
-  if (editingArticle) {
+  if (editingArticle) { 
     return (
       <ArticleForm
         initialData={editingArticle}
@@ -75,6 +77,14 @@ function Home() {
 //  if (addingArticle) {
  //   return <ArticleForm onSubmit={handleAdd} onCancel={() => setAddingArticle(false)} />;
   //}
+
+const handleStartEdit = (article) => {
+  if (!token || (username !== article.author && role !== "admin")) {
+    alert("That's not your article");
+  } else {
+    setEditingArticle(article);
+  }
+};
 
   return (
     <div>
@@ -96,7 +106,7 @@ function Home() {
         <ArticleList
           articles={filteredArticles}
           onDelete={handleDelete}
-          onEdit={setEditingArticle}
+          onEdit={handleStartEdit}
           onView={handleView}
         />
 

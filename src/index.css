@@ -406,8 +406,6 @@ body.hollow-dark .login-box input {
 }
 
 .options{
-  height: 1rem;
-  width: 1rem;
   padding: 0.7rem;
   background-color: var(--danger);
   color: var(--danger-color);
