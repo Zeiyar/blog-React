@@ -13,8 +13,11 @@
   --text-muted: #555;
   --accent: #6B45CC;
   --accent-hover: #8B63FF;
-  --danger: #C0392B;
+  --danger: #ac1049;
   --border: #ccc;
+  --blue-violet : rgb(181, 135, 223);
+  --danger-hover: rgb(143, 2, 105);
+  --danger-color: rgb(230, 39, 255);
 }
 
 /* Thème sombre */
@@ -25,8 +28,11 @@ body.hollow-dark {
   --text-muted: #A0A0C0;
   --accent: #8B63FF;
   --accent-hover: #6B45CC;
-  --danger: #FF4C4C;
+  --danger: rgb(134, 40, 54);
   --border: #3C3C50;
+  --blue-violet : blueviolet;
+  --danger-hover: rgb(89, 0, 65);
+  --danger-color: rgb(147, 24, 163);
 }
 
 /* Global */
@@ -42,7 +48,7 @@ body {
 .article-list {
   list-style: none;
   padding: 0;
-  margin: 1rem;
+  margin: 3rem;
 }
 
 .article-item {
@@ -130,7 +136,7 @@ body {
   opacity: 1;
   pointer-events: auto;
   transform: translateY(0);
-  background-color: blueviolet;
+  background-color: var(--blue-violet);
 }
 
 /* Bouton principal */
@@ -334,6 +340,9 @@ body {
 .dash{
   margin-left: 240px;
 }
+.dash h1{
+  text-align: center;
+}
 
 /* login */
 .login-page {
@@ -396,7 +405,9 @@ body.hollow-dark .login-box input {
   transform: scale(1.05);
 }
 
-.registerBtn{
+.options{
+  height: 0.3rem;
+  width: 0.3rem;
   padding: 0.7rem;
   background-color: var(--danger);
   color: var(--danger-color);
@@ -404,8 +415,9 @@ body.hollow-dark .login-box input {
   cursor: pointer;
   font-weight: bold;
   transition: background 0.3s ease, transform 0.2s;
+  border: none;
 }
-.registerBtn:hover {
+.options:hover {
   background: var(--danger-hover);
   transform: scale(1.05);
 }

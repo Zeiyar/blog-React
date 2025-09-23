@@ -106,18 +106,18 @@ function DashBoard() {
         <ArticleForm onSubmit={handleAdd} />
       </div>
 
-      <button onClick={() => setDark(!dark)}>
+      <button className="options" onClick={() => setDark(!dark)}>
       {dark ? "Brighter ?" : "Darker ?"}
       </button>
-      <button onClick={() => navigate("/")}>Home</button>
-      <button onClick={() => setDisconnecta(true)}>Disconnect?</button>
+      <button className="options" onClick={() => navigate("/")}>Home</button>
+      <button className="options" onClick={() => setDisconnecta(true)}>Disconnect?</button>
 
       {disconnecta && (
-        <>
-          <p>Are you sure ?</p>
-          <button onClick={disconnection}>Yes</button>
-          <button onClick={() => setDisconnecta(false)}>No</button>
-        </>
+        <div>
+          <p className="options">Are you sure ?</p>
+          <button className="options"onClick={disconnection}>Yes</button>
+          <button className="options" onClick={() => setDisconnecta(false)}>No</button>
+        </div>
       )}
       </main>
     </>
