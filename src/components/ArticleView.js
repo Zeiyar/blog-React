@@ -1,5 +1,5 @@
 import DOMPurify from "dompurify";
-import { useState,useEffect } from ReactDOM;
+import { useState,useEffect } from "react";
 
 function ArticleView ({article,onBack}){
     const username = localStorage.getItem("username");
