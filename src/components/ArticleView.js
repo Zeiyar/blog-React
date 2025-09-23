@@ -35,7 +35,7 @@ function ArticleView ({article,onBack}){
         setRating(5);
     }
 
-    const averageRating = comments.length>0 ? comments.reduce((sum,c),sum+c.rating, 0) / comments.length : "";
+    const averageRating = comments.length>0 ? comments.reduce((sum,c) => sum+ (Number(c.rating) || 0), 0) / comments.length : "";
 
     return (
         <>
