@@ -34,8 +34,19 @@ function Home() {
     return;
   }
 
-  await deleteArticle(article._id, token);
-  setArticles(articles.filter((a) => a._id !== article._id));
+  try {
+    const res = await deleteArticle(article._id, token);
+    if (!res.ok) {
+      const data = await res.json();
+      alert(data.message || "Impossible de supprimer l'article");
+      return;
+    }
+
+    setArticles(articles.filter((a) => a._id !== article._id));
+  } catch (err) {
+    console.error(err);
+    alert("Erreur lors de la suppression");
+  }
 };
 
   const handleStartEdit = (article) => {
@@ -47,10 +58,19 @@ function Home() {
   };
 
   const handleEdit = async (id, updatedData) => {
+  try {
     const updatedArticle = await modifyArticle(id, updatedData, token);
-    setArticles(articles.map((a) => (a._id === id ? updatedArticle : a)));
+    if (!updatedArticle) {
+      alert("Vous n'avez pas la permission");
+      return;
+    }
+    setArticles(articles.map(a => (a._id === id ? updatedArticle : a)));
     setEditingArticle(null);
-  };
+  } catch (err) {
+    console.error(err);
+    alert("Erreur lors de la modification");
+  }
+};
 
   const handleView = (id) => {
     const seeing = articles.find((a) => a._id === id);
