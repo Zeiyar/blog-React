@@ -5,7 +5,7 @@ function ArticleView ({article,onBack}){
     const username = localStorage.getItem("username");
     const token = localStorage.getItem("token");
     const [comment,setComment] = useState("");
-    const [rating,setRating] = useState("");
+    const [rating,setRating] = useState(5);
     const [comments,setComments] = useState([]);
 
     useEffect(()=>{
@@ -35,13 +35,13 @@ function ArticleView ({article,onBack}){
         setRating(5);
     }
 
-    const averageRating = comments.length>0 ? comments.reduce((sum,c) => sum+ (Number(c.rating) || 0), 0) / comments.length : "";
+    const averageRating = comments.length>0 ? comments.reduce((sum,c) => sum+ (Number(c.rating) || 0), 0).toFixed(1) / comments.length : null;
 
     return (
         <>
     <div className="Seeing">
         <h1>{article.title}</h1>
-        <small>by {article.author} - ⭐{averageRating.toFixed(1)}/5</small>
+        <small>by {article.author} {averageRating&& `- ⭐${averageRating}/5`}</small>
         <small>created the {new Date(article.createdAt).toLocaleString()}</small>
         <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(article.content)}}/>
         <button onClick={onBack}>BACK</button>
