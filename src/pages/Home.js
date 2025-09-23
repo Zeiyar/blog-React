@@ -28,14 +28,14 @@ function Home() {
   };*/
 
   const handleDelete = async (id) => {
-    const article = articles.filter((a) => a._id === id);
+    const article = articles.find((a) => a._id === id);
     if(!token || (username !== article.author && role !== "admin")){alert("that's not your article")}else{
     await deleteArticle(id, token);
     setArticles(articles.filter((a) => a._id !== id))};
   };
 
   const handleEdit = async (id, updatedData) => {
-    const article = articles.filter((a) => a._id === id);
+    const article = articles.find((a) => a._id === id);
     if(!token || (username !== article.author && role !== "admin")){alert("that's not your article")}else{
     const updatedArticle = await modifyArticle(id, updatedData, token);
     setArticles(articles.map((a) => (a._id === id ? updatedArticle : a)));
