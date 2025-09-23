@@ -114,9 +114,9 @@ function DashBoard() {
 
       {disconnecta && (
         <div>
-          <p className="options">Are you sure ?</p>
-          <button className="options"onClick={disconnection}>Yes</button>
-          <button className="options" onClick={() => setDisconnecta(false)}>No</button>
+          <p>Are you sure ?</p>
+          <button onClick={disconnection}>Yes</button>
+          <button onClick={() => setDisconnecta(false)}>No</button>
         </div>
       )}
       </main>

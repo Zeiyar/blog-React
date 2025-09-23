@@ -116,7 +116,7 @@ const handleStartEdit = (article) => {
           else{
             setAddingArticle(true);
             navigate("/dashboard")}}}>
-          {addingArticle ? "Add an article!!!" : "you are not connected you need to connect to had articles you will be redirected"}
+          {addingArticle ? "Add an article!!!" : "You are not connected you need to connect to had articles you will be redirected"}
         </button>
       </main>
     </div>

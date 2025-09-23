@@ -14,7 +14,7 @@ function ArticleForm ({onSubmit,initialData,onCancel}){
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        onSubmit({title,content});
+        onSubmit({title,content,author: username});
         setTitle("");
         setContent("");
     }
