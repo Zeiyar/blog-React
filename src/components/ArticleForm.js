@@ -13,7 +13,7 @@ function ArticleForm ({onSubmit,initialData,onCancel}){
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        onSubmit({title,content});
+        onSubmit({title,content,createdAt});
         setTitle("");
         setContent("");
     }
@@ -26,7 +26,7 @@ function ArticleForm ({onSubmit,initialData,onCancel}){
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               required
-              maxLength={30}
+              maxLength={100}
             />
             <textarea
               placeholder="content"

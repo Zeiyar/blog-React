@@ -3,7 +3,7 @@ function ArticleView ({article,onBack}){
     <div className="Seeing">
         <h1>{article.title}</h1>
         <small>by {article.author}</small>
-        <p>{article.content}</p>
+        <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(article.content)}}/>
         <button onClick={onBack}>BACK</button>
     </div>)};
 

@@ -342,6 +342,7 @@ body {
 }
 .dash h1{
   text-align: center;
+  margin-top: 1rem;
 }
 
 /* login */

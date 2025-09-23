@@ -1,3 +1,5 @@
+import DOMPurify from "dompurify";
+
 function ArticleList ({ articles, onEdit, onDelete, onView}){
     return (
         <ul className="article-list">
@@ -5,11 +7,12 @@ function ArticleList ({ articles, onEdit, onDelete, onView}){
               <li key={article._id} className="article-item">
                 <div className="article-text">
                     <h2>{article.title}</h2>
-                    <p>{article.content.slice(0,30)+"..." || "No content"}</p>
+                    <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(article.content.slice(0,30)+"...")}}/>
                     <small>by {article.author}</small>
                 </div>
-
+                
                 <div className="article-actions">
+                  <small>{article.createdAt}</small>
                   <button className="menu-btn">⋮</button>
                   <div className="actions-dropdown">
                     <button onClick={() => onEdit(article)}>✏️ Modify</button>
