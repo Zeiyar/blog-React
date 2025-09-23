@@ -20,34 +20,29 @@ function Home() {
     getArticles().then(setArticles);
   }, []);
 
-/*  const handleAdd = async (article) => {
-    const newArticle = await addArticle(article, token);
-    setArticles([...articles, newArticle]);
-    setAddingArticle(false);
-    navigate("/")
-  };*/
-
-
   const handleDelete = async (article) => {
-  if (!token || (username !== article.author && role !== "admin")) {
-    alert("that's not your article");
+  if (!token) {
+    alert("You must be logged in");
     return;
   }
 
   try {
     const res = await deleteArticle(article._id, token);
+    const data = await res.json();
+
     if (!res.ok) {
-      const data = await res.json();
-      alert(data.message || "Impossible de supprimer l'article");
+      alert(data.message || "You can't delete this article");
       return;
     }
 
-    setArticles(articles.filter((a) => a._id !== article._id));
+    setArticles(articles.filter(a => a._id !== article._id));
+    alert(data.message);
   } catch (err) {
     console.error(err);
-    alert("Erreur lors de la suppression");
+    alert("You can't delete this article");
   }
 };
+
 
   const handleStartEdit = (article) => {
     if (!token || (username !== article.author && role !== "admin")) {
@@ -61,14 +56,14 @@ function Home() {
   try {
     const updatedArticle = await modifyArticle(id, updatedData, token);
     if (!updatedArticle) {
-      alert("Vous n'avez pas la permission");
+      alert("You can't modify this article");
       return;
     }
     setArticles(articles.map(a => (a._id === id ? updatedArticle : a)));
     setEditingArticle(null);
   } catch (err) {
     console.error(err);
-    alert("Erreur lors de la modification");
+    alert("You can't modify this article");
   }
 };
 
@@ -100,10 +95,6 @@ function Home() {
       />
     );
   }
-
-//  if (addingArticle) {
- //   return <ArticleForm onSubmit={handleAdd} onCancel={() => setAddingArticle(false)} />;
-  //}
 
   return (
     <div>

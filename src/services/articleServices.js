@@ -32,8 +32,9 @@ export async function modifyArticle(id,newArticle,token){
 }
 
 export async function deleteArticle(id,token){
-    await fetch(`${API_URL}/${id}`,{
+    const res = await fetch(`${API_URL}/${id}`,{
         method: "DELETE",
         headers:{Authorization:`Bearer ${token}`}
-    })
+    });
+    return res
 }
