@@ -6,18 +6,18 @@ function ArticleView ({article,onBack}){
     const token = localStorage.getItem("token");
     const [comment,setComment] = useState("");
     const [rating,setRating] = useState("");
-    const [comments,setComments] = useState("");
+    const [comments,setComments] = useState([]);
 
     useEffect(()=>{
         fetch(`https://blog-react-backend-3.onrender.com/comments/${article._id}`)
-            .then(res=>res.json)
+            .then(res=>res.json())
             .then(data=> setComments(data));
     },[article._id]);
 
     const addComments = async(e) =>{
         e.preventDefault();
 
-        const res = fetch("https://blog-react-backend-3.onrender.com/comments",{
+        const res = await fetch("https://blog-react-backend-3.onrender.com/comments",{
             method: "POST",
             headers: ({"Content-Type":"application/json",Authorization : `Bearer ${token}`}),
             body:JSON.stringify({content:comment,rating, articleId: article._id}),
@@ -30,16 +30,18 @@ function ArticleView ({article,onBack}){
             return;
         }
         
-        setComments([...comments,data]);
+        setComments([data,...comments]);
         setComment("");
         setRating(5);
     }
+
+    const averageRating = comments.length>0 ? comments.reduce((sum,c),sum+c.rating, 0) / comments.length : "";
 
     return (
         <>
     <div className="Seeing">
         <h1>{article.title}</h1>
-        <small>by {article.author}</small>
+        <small>by {article.author} - ⭐{averageRating.toFixed(1)}/5</small>
         <small>created the {new Date(article.createdAt).toLocaleString()}</small>
         <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(article.content)}}/>
         <button onClick={onBack}>BACK</button>
@@ -47,14 +49,15 @@ function ArticleView ({article,onBack}){
 
     <div className="comments-list">
         <h2>Comments :</h2>
-        {comments.map((comment)=>{
-            <div key={comment._id} className="comment">
-                <strong>{comment.username}</strong> - ⭐ {comment.rating}<br />
-                <p>{DOMPurify.sanitize(comment.content)}</p>
-                <small>{new Date (comment.createdAt).toLocaleString()}</small>
+        {comments.map((c) => (
+            <div key={c._id} className="comment">
+                <strong>{c.username}</strong> - ⭐ {c.rating}<br />
+                <p>{DOMPurify.sanitize(c.content)}</p>
+                <small>{new Date(c.createdAt).toLocaleString()}</small>
             </div>
-        })}
+        ))}
     </div>
+
 
     {username && (<form onSubmit={addComments} className="comments-form">
         <h3>Add a comment !!</h3>
