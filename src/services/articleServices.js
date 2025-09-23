@@ -36,5 +36,5 @@ export async function deleteArticle(id,token){
         method: "DELETE",
         headers:{Authorization:`Bearer ${token}`}
     });
-    return res
+    return res;
 }

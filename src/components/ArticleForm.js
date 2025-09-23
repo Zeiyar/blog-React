@@ -26,6 +26,7 @@ function ArticleForm ({onSubmit,initialData,onCancel}){
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               required
+              maxLength={30}
             />
             <textarea
               placeholder="content"
