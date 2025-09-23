@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { getArticles, addArticle, deleteArticle, modifyArticle } from "../services/articleServices";
+import { getArticles, deleteArticle, modifyArticle } from "../services/articleServices";
 import ArticleList from "../components/ArticlesList";
 import ArticleForm from "../components/ArticleForm";
 import ArticleView from "../components/ArticleView";
@@ -13,7 +13,8 @@ function Home() {
   const [editingArticle, setEditingArticle] = useState(null);
   const [seeingArticle, setSeeingArticle] = useState(null);
   const [addingArticle, setAddingArticle] = useState(true);
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState(""); 
+  const role = localStorage.getItem("role");
 
   useEffect(() => {
     getArticles().then(setArticles);
