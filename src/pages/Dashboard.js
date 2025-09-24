@@ -18,8 +18,8 @@ function DashBoard() {
   // Charger les articles de l’utilisateur
   useEffect(() => {
     async function fetchData() {
-      const articles = await getArticles();
-      const mine = articles.filter((a) => a.author === username);
+      const data = await getArticles();
+      const mine = data.articles.filter((a) => a.author === username);
       setMyArticles(mine);
     }
     fetchData();

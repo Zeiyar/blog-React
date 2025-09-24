@@ -62,7 +62,7 @@ function ArticleView ({article,onBack}){
     }
     }
 
-    const averageRating = (comments.length>0 ? comments.reduce((sum,c) => sum+ (Number(c.rating) || 0), 0) / comments.length : null).toFixed(1);
+    const averageRating = comments.length>0 ? (comments.reduce((sum,c) => sum+ (Number(c.rating) || 0), 0) / comments.length).toFixed(1) : null;
 
     return (
         <>

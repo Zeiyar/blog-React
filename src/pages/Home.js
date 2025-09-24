@@ -16,7 +16,6 @@ function Home() {
   const [search, setSearch] = useState(""); 
   const [pages,setPages] = useState(1);
   const [page,setPage] = useState(1);
-  const role = localStorage.getItem("role");
 
   useEffect(() => {
     fetch(`https://blog-react-backend-3.onrender.com/articles?page=${page}&limit=20`)
@@ -52,7 +51,7 @@ function Home() {
 
 
   const handleStartEdit = (article) => {
-    if (!token || (username !== article.author && role !== "admin")) {
+    if (!token || (username !== article.author && username !== "ADMIN")) {
       alert("That's not your article");
     } else {
       setEditingArticle(article);
@@ -107,7 +106,7 @@ function Home() {
     <div>
       <header>
         <nav className="app-header">
-          <h1>Reablog in the filled Hollow</h1>
+          <h1>DoubiMoovie</h1>
           {username&&<h2 className="usernameh2">even if we tried we couldn't stop {username}</h2>}
           <input
             type="text"
