@@ -43,17 +43,42 @@ function DashBoard() {
   };
 
   // CRUD
-  const handleDelete = async (id) => {
-    await deleteArticle(id, token);
-    setMyArticles(myArticles.filter((a) => a._id !== id));
+  const handleDelete = async (article) => {
+    if (!token) {
+      alert("you need to reconnect...");
+      return navigate("/login");
+    }
+    try {
+      const res = await deleteArticle(article._id, token);
+      const data = await res.json();
+  
+      if (!res.ok) {
+        alert(data.message || "You can't delete this article");
+        return;
+      }
+  
+      setMyArticles(myArticles.filter(a => a._id !== article._id));
+      alert(data.message);
+    } catch (err) {
+      console.error(err);
+      alert("You can't delete this article");
+    }
   };
 
   const handleAdd = async (article) => {
+    if (!token) {
+      alert("you need to reconnect...");
+      return navigate("/login");
+    }
     const newArticle = await addArticle(article, token);
     setMyArticles([...myArticles, newArticle]);
   };
 
   const handleEdit = async (id, updatedData) => {
+    if (!token) {
+      alert("you need to reconnect...");
+      return navigate("/login");
+    }
     const updatedArticle = await modifyArticle(id, updatedData, token);
     setMyArticles(myArticles.map((a) => (a._id === id ? updatedArticle : a)));
     setEditingArticle(null);

@@ -18,6 +18,13 @@
   --blue-violet : rgb(181, 135, 223);
   --danger-hover: rgb(143, 2, 105);
   --danger-color: rgb(230, 39, 255);
+  
+  --ectoplasm: #ffffff;         
+  --phantasm: #f5f6fa;          
+  --cryptic-ink: #1a1a1a;       
+  --ghost-whisper: #555555;     
+  --arcane-glow: #6b5cff;       
+  --eldritch-border: rgba(0, 0, 0, 0.1);
 }
 
 /* Thème sombre */
@@ -33,6 +40,13 @@ body.hollow-dark {
   --blue-violet : blueviolet;
   --danger-hover: rgb(89, 0, 65);
   --danger-color: rgb(147, 24, 163);
+
+  --ectoplasm: #0b0f13;
+  --phantasm: #141820;
+  --cryptic-ink: #d5d8e0;
+  --ghost-whisper: #a0a0c0;
+  --arcane-glow: #8470ff;
+  --eldritch-border: rgba(255, 255, 255, 0.07);
 }
 
 /* Global */
@@ -102,7 +116,7 @@ body {
 .actions-dropdown {
   position: absolute;
   top: 100%;
-  right: 0;
+  right: 10%;
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: 6px;
@@ -231,129 +245,115 @@ body {
 /* Commentaire */
 
 .comment-section {
-  width: 100%;
-  max-width: 900px;
-  margin: 3rem auto;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
   padding: 2rem;
-  border-radius: 12px;
-  background: linear-gradient(160deg, #0b0f13, #141820 70%, #0d0f15);
-  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.65);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  margin-top : 3rem;
   display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: small;
+  gap: 1rem;
+  border-radius: 3px;
   flex-direction: column;
-  gap: 2rem;
-  font-size: 0.95rem;
-  color: #d5d8e0;
+  height: 100%;
+  width: 100%;
+  background: var(--ectoplasm);
 }
 
-/* Titre */
-.comment-section h2 {
-  margin: 0;
-  font-size: 1.4rem;
-  font-weight: 600;
-  color: #f2f3f7;
-  text-align: center;
-  text-shadow: 0 2px 6px rgba(107, 92, 255, 0.4);
-}
-
-/* Liste de commentaires */
 .comments-list {
   display: flex;
   flex-direction: column;
-  gap: 1.2rem;
+  gap: 1.5rem;
+  padding: 1rem;
+  background: var(--phantasm);
+  border-radius: 12px;
+  border: 1px solid var(--eldritch-border);
 }
 
-/* Boutons dans la liste */
 .comments-list button {
-  margin-left: auto;
+  margin: auto 0 auto auto;
   border: none;
-  color: #aaa;
-  background-color: #2A2A3E;
-  padding: 0.4rem 0.8rem;
-  border-radius: 6px;
+  color: var(--ghost-whisper);
+  background-color: var(--phantasm);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: color 0.2s ease;
 }
 .comments-list button:hover {
-  color: #6B45CC;
-  box-shadow: 0 0 8px rgba(107, 92, 255, 0.4);
+  color: var(--arcane-glow);
 }
-
-/* Select */
 .comments-list select {
-  background-color: #6B45CC;
+  background-color: var(--arcane-glow);
+  margin: 5px;
   border: none;
-  color: #fff;
-  padding: 0.4rem 0.6rem;
   border-radius: 6px;
+  color: #fff;
+  padding: 0.3rem 0.5rem;
 }
 
-/* Un commentaire */
 .comment {
-  padding: 1.2rem;
+  margin: 0;
+  padding: 1.5rem;
   border-radius: 10px;
-  background: rgba(20, 24, 30, 0.8);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.55);
+  background: var(--phantasm);
+  border: 1px solid var(--eldritch-border);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 .comment:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 28px rgba(107, 92, 255, 0.18);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(107, 92, 255, 0.15);
 }
 .comment p {
   margin: 0;
+  color: var(--cryptic-ink);
   line-height: 1.5;
 }
 
-/* Formulaire */
 .comments-form {
-  padding: 1.5rem;
-  background: rgba(15, 17, 25, 0.9);
-  border-radius: 10px;
-  border: 1px solid rgba(107, 92, 255, 0.25);
-  box-shadow: inset 0 0 15px rgba(107, 92, 255, 0.06);
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  margin-top: 3rem;
+  padding: 2rem;
+  background: var(--phantasm);
+  border-radius: 12px;
+  border: 1px solid var(--arcane-glow);
+  color: var(--cryptic-ink);
+  box-shadow: inset 0 0 18px rgba(107, 92, 255, 0.05);
 }
-
 .comments-form textarea,
 .comments-form input {
   width: 100%;
-  padding: 0.8rem 1rem;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  background: var(--ectoplasm);
+  border: 1px solid var(--eldritch-border);
   border-radius: 8px;
-  color: #f2f3f7;
-  resize: vertical;
+  color: var(--cryptic-ink);
   font-size: 0.95rem;
-  transition: all 0.2s ease;
+  resize: vertical;
+  transition: border 0.2s ease, box-shadow 0.2s ease;
 }
 .comments-form textarea:focus,
 .comments-form input:focus {
   outline: none;
-  border: 1px solid #6b5cff;
+  border: 1px solid var(--arcane-glow);
   box-shadow: 0 0 6px rgba(107, 92, 255, 0.4);
 }
 
 .comments-form button {
-  align-self: flex-end;
-  background: #6b5cff;
+  display: inline-block;
+  background: var(--arcane-glow);
   color: #fff;
   padding: 0.8rem 1.5rem;
   border-radius: 8px;
   border: none;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.25s ease;
+  transition: background 0.25s ease, transform 0.2s ease;
 }
 .comments-form button:hover {
-  background: #8470ff;
+  background: #a08aff;
   transform: translateY(-2px);
-  box-shadow: 0 0 12px rgba(107, 92, 255, 0.5);
+  box-shadow: 0 0 12px rgba(107, 92, 255, 0.4);
 }
-
 
 /*pagination et date*/
 .pagination{
