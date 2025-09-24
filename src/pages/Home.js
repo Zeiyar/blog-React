@@ -20,7 +20,7 @@ function Home() {
 
   useEffect(() => {
     fetch(`https://blog-react-backend-3.onrender.com/articles?page=${page}&limit=20`)
-      .then(res => res.json)
+      .then(res => res.json())
       .then(data => {
         setArticles(data.articles);
         setPages(data.pages);
@@ -136,8 +136,9 @@ function Home() {
           {addingArticle ? "Add an article!!!" : "You are not connected you need to connect to had articles you will be redirected"}
         </button>
         <div className="pagination">
-          <button disabled={page===1} onClick={setPage(page-1)}>⬅ prev</button>
-          <button disabled={page===pages} onClick={setPage(page+1)}>Next ➡</button>
+          <button disabled={page===1} onClick={()=>setPage(page-1)}>⬅ prev</button>
+          <span>{page} / {pages}</span>
+          <button disabled={page===pages} onClick={()=>setPage(page+1)}>Next ➡</button>
         </div>
       </main>
     </div>

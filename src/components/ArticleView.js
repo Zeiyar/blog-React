@@ -7,12 +7,16 @@ function ArticleView ({article,onBack}){
     const [comment,setComment] = useState("");
     const [rating,setRating] = useState(5);
     const [comments,setComments] = useState([]);
+    const [page,setPage] = useState(1);
+    const [pages,setPages] = useState(1);
 
     useEffect(()=>{
-        fetch(`https://blog-react-backend-3.onrender.com/comments/${article._id}`)
+        fetch(`https://blog-react-backend-3.onrender.com/comments/${article._id}?page=${page}&limit=20`)
             .then(res=>res.json())
-            .then(data=> setComments(data));
-    },[article._id]);
+            .then(data=> {
+                setComments(data.comments);
+                setPages(data.pages)});
+    },[article._id,page]);
 
     const addComments = async(e) =>{
         e.preventDefault();
@@ -58,7 +62,7 @@ function ArticleView ({article,onBack}){
     }
     }
 
-    const averageRating = comments.length>0 ? comments.reduce((sum,c) => sum+ (Number(c.rating) || 0), 0).toFixed(1) / comments.length : null;
+    const averageRating = (comments.length>0 ? comments.reduce((sum,c) => sum+ (Number(c.rating) || 0), 0) / comments.length : null).toFixed(1);
 
     return (
         <>
@@ -91,8 +95,12 @@ function ArticleView ({article,onBack}){
                 <button onClick={()=>handleDelete(c._id,c.username)}>X</button>
             </div>
         ))}
+        <div className="pagination"><button onClick={()=>setPage(page-1)} disabled={page===1}>⬅ prev</button>
+        <span>Page {page} of {pages}</span>
+        <button onClick={()=>setPage(page+1)} disabled={page===pages}>next ➡</button></div>
     </div>
     </div>
-    </>)};
+    </>);
+}
 
 export default ArticleView;
