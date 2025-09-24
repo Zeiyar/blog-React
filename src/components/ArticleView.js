@@ -35,6 +35,29 @@ function ArticleView ({article,onBack}){
         setRating(5);
     }
 
+    const handleDelete = async(comment_id,cusername) =>{
+        if(!token || username !== cusername){
+            return alert("you are not authorized to do that");
+        }
+    try{
+        const res = await fetch(`https://blog-react-backend-3.onrender.com/comments/${article._id}/${comment_id}`,{
+            method: "DELETE",
+            headers: {Authorization : `Bearer ${token}`},
+        });
+        const data = await res.json();
+
+        if (!res.ok){
+            alert(data.message || "error deleting comment");
+            return
+        }
+        
+        setComments(comments.filter((c)=> c._id !== comment_id)) 
+    }catch(err){
+        console.error(err);
+        alert("something went wrong")
+    }
+    }
+
     const averageRating = comments.length>0 ? comments.reduce((sum,c) => sum+ (Number(c.rating) || 0), 0).toFixed(1) / comments.length : null;
 
     return (
@@ -47,18 +70,8 @@ function ArticleView ({article,onBack}){
         <button onClick={onBack}>BACK</button>
     </div>
 
-    <div className="comments-list">
-        <h2>Comments :</h2>
-        {comments.map((c) => (
-            <div key={c._id} className="comment">
-                <strong>{c.username}</strong> - ⭐ {c.rating}<br />
-                <p>{DOMPurify.sanitize(c.content)}</p>
-                <small>{new Date(c.createdAt).toLocaleString()}</small>
-            </div>
-        ))}
-    </div>
-
-
+    <div className="comment-section">
+        <hr />
     {username && (<form onSubmit={addComments} className="comments-form">
         <h3>Add a comment !!</h3>
         <select value={rating} onChange={(e)=>setRating(Number(e.target.value))}>
@@ -67,6 +80,19 @@ function ArticleView ({article,onBack}){
         <textarea value={comment} onChange={(e)=>setComment(e.target.value)} placeholder="wright a comment..." required />
         <button type="submit">add</button>
     </form>)}
+
+    <div className="comments-list">
+        <h2>Comments :</h2>
+        {comments.map((c) => (
+            <div key={c._id} className="comment">
+                <strong>{c.username}</strong> - ⭐ {c.rating}<br />
+                <p>{DOMPurify.sanitize(c.content)}</p>
+                <small>{new Date(c.createdAt).toLocaleString()}</small>
+                <button onClick={handleDelete(c._id,c.username)}>X</button>
+            </div>
+        ))}
+    </div>
+    </div>
     </>)};
 
 export default ArticleView;

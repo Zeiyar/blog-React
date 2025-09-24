@@ -12,7 +12,7 @@ function ArticleList ({ articles, onEdit, onDelete, onView}){
                 </div>
                 
                 <div className="article-actions">
-                  <small>modified the {new Date(article.updatedAt).toLocaleString()}</small>
+                  <small className="date">{new Date(article.updatedAt).toLocaleString()}</small>
                   <button className="menu-btn">⋮</button>
                   <div className="actions-dropdown">
                     <button onClick={() => onEdit(article)}>✏️ Modify</button>
