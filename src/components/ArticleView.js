@@ -88,7 +88,7 @@ function ArticleView ({article,onBack}){
                 <strong>{c.username}</strong> - ⭐ {c.rating}<br />
                 <p>{DOMPurify.sanitize(c.content)}</p>
                 <small>{new Date(c.createdAt).toLocaleString()}</small>
-                <button onClick={handleDelete(c._id,c.username)}>X</button>
+                <button onClick={()=>handleDelete(c._id,c.username)}>X</button>
             </div>
         ))}
     </div>

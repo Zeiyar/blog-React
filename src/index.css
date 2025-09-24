@@ -3,6 +3,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 /* Thème clair (par défaut) */
@@ -125,7 +126,7 @@ body {
   font-size: 0.9rem;
   color: var(--text);
   width: 100%;
-  z-index: 10;
+  z-index: 9;
 }
 
 .actions-dropdown button:hover {
@@ -191,6 +192,7 @@ body {
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
   min-width: 300px;
+  min-height: 500px;
 }
 
 .Seeing h1 {
@@ -231,7 +233,6 @@ body {
 /* Commentaire */
 
 .comment-section{
-  border: solid black 0.5px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
   padding: 2rem;
   margin-top : 3rem;
@@ -241,6 +242,9 @@ body {
   font-size: small;
   gap: 1rem;
   border-radius: 3px;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
 }
 .comments-list {
   display: flex;
@@ -254,10 +258,15 @@ body {
 .comments-list button{
   margin: auto 0 auto auto;
   border: none;
-  color: black;
+  color: #555;
+  background-color: #2A2A3E;
 }
 .comments-list button:hover{
-  color: white;
+  color:#6B45CC;
+}
+.comments-list select{
+  background-color:#6B45CC;
+  margin: 5px;
 }
 
 .comment {
@@ -330,8 +339,15 @@ body {
   box-shadow: 0 0 12px rgba(107, 92, 255, 0.4);
 }
 
+/*pagination et date*/
+.pagination{
+  margin-top: 3rem;
+  border: none;
+}
+
 .date{
-  font-size: 5px;
+  margin-bottom: 10px;
+  font-size: 20px;
   z-index: 0;
 }
 /* Modal */

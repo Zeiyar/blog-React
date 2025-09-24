@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { getArticles, deleteArticle, modifyArticle } from "../services/articleServices";
+import { deleteArticle, modifyArticle } from "../services/articleServices";
 import ArticleList from "../components/ArticlesList";
 import ArticleForm from "../components/ArticleForm";
 import ArticleView from "../components/ArticleView";
@@ -14,11 +14,18 @@ function Home() {
   const [seeingArticle, setSeeingArticle] = useState(null);
   const [addingArticle, setAddingArticle] = useState(true);
   const [search, setSearch] = useState(""); 
+  const [pages,setPages] = useState(1);
+  const [page,setPage] = useState(1);
   const role = localStorage.getItem("role");
 
   useEffect(() => {
-    getArticles().then(setArticles);
-  }, []);
+    fetch(`https://blog-react-backend-3.onrender.com/articles?page=${page}&limit=20`)
+      .then(res => res.json)
+      .then(data => {
+        setArticles(data.articles);
+        setPages(data.pages);
+  });
+}, [page]);
 
   const handleDelete = async (article) => {
   if (!token) {
@@ -128,6 +135,10 @@ function Home() {
             navigate("/dashboard")}}}>
           {addingArticle ? "Add an article!!!" : "You are not connected you need to connect to had articles you will be redirected"}
         </button>
+        <div className="pagination">
+          <button disabled={page===1} onClick={setPage(page-1)}>⬅ prev</button>
+          <button disabled={page===pages} onClick={setPage(page+1)}>Next ➡</button>
+        </div>
       </main>
     </div>
   );
