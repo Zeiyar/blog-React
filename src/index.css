@@ -19,12 +19,12 @@
   --danger-hover: rgb(143, 2, 105);
   --danger-color: rgb(230, 39, 255);
   
-  --ectoplasm: #ffffff;         
-  --phantasm: #f5f6fa;          
-  --cryptic-ink: #1a1a1a;       
-  --ghost-whisper: #555555;     
-  --arcane-glow: #6b5cff;       
-  --eldritch-border: rgba(0, 0, 0, 0.1);
+  --void-veil: #ffffff;           
+  --shade-echo: #f0f2f8;           
+  --rune-ink: #1c1c1c;             
+  --murmur: #555;                  
+  --arcane-flare: #6b5cff;         
+  --twilight-border: rgba(0, 0, 0, 0.08);
 }
 
 /* Thème sombre */
@@ -41,12 +41,12 @@ body.hollow-dark {
   --danger-hover: rgb(89, 0, 65);
   --danger-color: rgb(147, 24, 163);
 
-  --ectoplasm: #0b0f13;
-  --phantasm: #141820;
-  --cryptic-ink: #d5d8e0;
-  --ghost-whisper: #a0a0c0;
-  --arcane-glow: #8470ff;
-  --eldritch-border: rgba(255, 255, 255, 0.07);
+  --void-veil: linear-gradient(160deg, #0b0f13, #141820 70%, #0d0f15);
+  --shade-echo: rgba(20, 24, 30, 0.8);
+  --rune-ink: #d5d8e0;
+  --murmur: #aaa;
+  --arcane-flare: #6b45cc;
+  --twilight-border: rgba(255, 255, 255, 0.06);
 }
 
 /* Global */
@@ -116,7 +116,7 @@ body {
 .actions-dropdown {
   position: absolute;
   top: 100%;
-  right: 10%;
+  left: 50%;
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: 6px;
@@ -245,114 +245,127 @@ body {
 /* Commentaire */
 
 .comment-section {
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-  padding: 2rem;
-  margin-top : 3rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: small;
-  gap: 1rem;
-  border-radius: 3px;
-  flex-direction: column;
-  height: 100%;
   width: 100%;
-  background: var(--ectoplasm);
+  max-width: 900px;
+  margin: 3rem auto;
+  padding: 2rem;
+  border-radius: 12px;
+  background: var(--void-veil);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.65);
+  border: 1px solid var(--twilight-border);
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  font-size: 0.95rem;
+  color: var(--rune-ink);
 }
 
+/* Titre */
+.comment-section h2 {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--rune-ink);
+  text-align: center;
+  text-shadow: 0 2px 6px rgba(107, 92, 255, 0.4);
+}
+
+/* Liste */
 .comments-list {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-  padding: 1rem;
-  background: var(--phantasm);
-  border-radius: 12px;
-  border: 1px solid var(--eldritch-border);
+  gap: 1.2rem;
 }
 
+/* Boutons liste */
 .comments-list button {
-  margin: auto 0 auto auto;
+  margin-left: auto;
   border: none;
-  color: var(--ghost-whisper);
-  background-color: var(--phantasm);
+  color: var(--murmur);
+  background-color: var(--shade-echo);
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
   cursor: pointer;
-  transition: color 0.2s ease;
+  transition: all 0.2s ease;
 }
 .comments-list button:hover {
-  color: var(--arcane-glow);
-}
-.comments-list select {
-  background-color: var(--arcane-glow);
-  margin: 5px;
-  border: none;
-  border-radius: 6px;
-  color: #fff;
-  padding: 0.3rem 0.5rem;
+  color: var(--arcane-flare);
+  box-shadow: 0 0 8px rgba(107, 92, 255, 0.4);
 }
 
+/* Select */
+.comments-list select {
+  background-color: var(--arcane-flare);
+  border: none;
+  color: #fff;
+  padding: 0.4rem 0.6rem;
+  border-radius: 6px;
+}
+
+/* Un commentaire */
 .comment {
-  margin: 0;
-  padding: 1.5rem;
+  padding: 1.2rem;
   border-radius: 10px;
-  background: var(--phantasm);
-  border: 1px solid var(--eldritch-border);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  background: var(--shade-echo);
+  border: 1px solid var(--twilight-border);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.55);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 .comment:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 30px rgba(107, 92, 255, 0.15);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 28px rgba(107, 92, 255, 0.18);
 }
 .comment p {
   margin: 0;
-  color: var(--cryptic-ink);
   line-height: 1.5;
 }
 
+/* Formulaire */
 .comments-form {
-  margin-top: 3rem;
-  padding: 2rem;
-  background: var(--phantasm);
-  border-radius: 12px;
-  border: 1px solid var(--arcane-glow);
-  color: var(--cryptic-ink);
-  box-shadow: inset 0 0 18px rgba(107, 92, 255, 0.05);
+  padding: 1.5rem;
+  background: var(--shade-echo);
+  border-radius: 10px;
+  border: 1px solid rgba(107, 92, 255, 0.25);
+  box-shadow: inset 0 0 15px rgba(107, 92, 255, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
+
 .comments-form textarea,
 .comments-form input {
   width: 100%;
-  padding: 0.75rem 1rem;
-  margin-bottom: 1rem;
-  background: var(--ectoplasm);
-  border: 1px solid var(--eldritch-border);
+  padding: 0.8rem 1rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 8px;
-  color: var(--cryptic-ink);
-  font-size: 0.95rem;
+  color: var(--rune-ink);
   resize: vertical;
-  transition: border 0.2s ease, box-shadow 0.2s ease;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
 }
 .comments-form textarea:focus,
 .comments-form input:focus {
   outline: none;
-  border: 1px solid var(--arcane-glow);
+  border: 1px solid var(--arcane-flare);
   box-shadow: 0 0 6px rgba(107, 92, 255, 0.4);
 }
 
 .comments-form button {
-  display: inline-block;
-  background: var(--arcane-glow);
+  align-self: flex-end;
+  background: var(--arcane-flare);
   color: #fff;
   padding: 0.8rem 1.5rem;
   border-radius: 8px;
   border: none;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.25s ease, transform 0.2s ease;
+  transition: all 0.25s ease;
 }
 .comments-form button:hover {
-  background: #a08aff;
+  background: #8470ff;
   transform: translateY(-2px);
-  box-shadow: 0 0 12px rgba(107, 92, 255, 0.4);
+  box-shadow: 0 0 12px rgba(107, 92, 255, 0.5);
 }
 
 /*pagination et date*/

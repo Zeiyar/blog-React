@@ -40,7 +40,7 @@ function ArticleView ({article,onBack}){
     }
 
     const handleDelete = async(comment_id,cusername) =>{
-        if(!token || username !== cusername){
+        if (!token || !(username === cusername || username === "ADMIN" || username === article.author)){
             return alert("you are not authorized to do that");
         }
     try{
