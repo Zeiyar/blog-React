@@ -106,7 +106,7 @@ function Home() {
     <div>
       <header>
         <nav className="app-header">
-          <h1>DoubiMoovie</h1>
+          <h1>BoulbiMoovie</h1>
           {username&&<h2 className="usernameh2">even if we tried we couldn't stop {username}</h2>}
           <input
             type="text"

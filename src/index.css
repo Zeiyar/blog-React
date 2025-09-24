@@ -116,7 +116,7 @@ body {
 .actions-dropdown {
   position: absolute;
   top: 100%;
-  right: 90%;
+  right: 80%;
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: 6px;
@@ -124,7 +124,7 @@ body {
   opacity: 0;
   pointer-events: none;
   transform: translateY(-10px);
-  transition: all 2s ease;
+  transition: all 1s ease;
   flex-direction: column;
   min-width: 120px;
   z-index: 11;
